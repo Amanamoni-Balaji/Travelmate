@@ -1,0 +1,138 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-sign-in-alt"></i> Login to TravelMate
+                    </h3>
+                </div>
+
+
+                <div class="card-body p-5">
+                    <form method="POST" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+
+                        <div class="mb-4">
+                            <label for="username" class="form-label">
+                                <i class="fas fa-user"></i> Username
+                            </label>
+                            <input type="text"
+                                   class="form-control form-control-lg"
+                                   id="username"
+                                   name="username"
+                                   placeholder="Enter your username"
+                                   required>
+                            <div class="invalid-feedback">
+                                Please provide a valid username.
+                            </div>
+                        </div>
+
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock"></i> Password
+                            </label>
+                            <input type="password"
+                                   class="form-control form-control-lg"
+                                   id="password"
+                                   name="password"
+                                   placeholder="Enter your password"
+                                   required>
+                            <div class="invalid-feedback">
+                                Please provide a valid password.
+                            </div>
+                        </div>
+
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-unlock"></i> Login
+                            </button>
+                        </div>
+                    </form>
+
+
+                    <hr class="my-4">
+
+
+                    <div class="text-center">
+                        <p class="mb-0">
+                            Don't have an account?
+                            <a href="{% url 'tourism:register' %}" class="fw-bold text-success">
+                                Create one now
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Benefits Section -->
+            <div class="mt-5">
+                <h5 class="text-center mb-4">Benefits of Logging In</h5>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="text-center">
+                            <i class="fas fa-book-open fa-2x text-primary mb-2"></i>
+                            <p><strong>Easy Booking</strong></p>
+                            <p class="small text-muted">Book tours with one click</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-center">
+                            <i class="fas fa-list fa-2x text-primary mb-2"></i>
+                            <p><strong>Track Bookings</strong></p>
+                            <p class="small text-muted">Manage all your trips</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-center">
+                            <i class="fas fa-bell fa-2x text-primary mb-2"></i>
+                            <p><strong>Get Updates</strong></p>
+                            <p class="small text-muted">Receive notifications</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-center">
+                            <i class="fas fa-user fa-2x text-primary mb-2"></i>
+                            <p><strong>Personalized</strong></p>
+                            <p class="small text-muted">Your travel profile</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Bootstrap form validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+
+{% endblock %}

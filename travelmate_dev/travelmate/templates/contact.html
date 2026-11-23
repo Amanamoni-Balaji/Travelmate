@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Contact Header -->
+            <div class="text-center mb-5">
+                <h1 class="mb-3"><i class="fas fa-envelope"></i> Contact Us</h1>
+                <p class="lead text-muted">Have questions? We'd love to hear from you!</p>
+            </div>
+
+
+            <!-- Contact Form & Info -->
+            <div class="row g-4">
+                <!-- Contact Form -->
+                <div class="col-lg-6">
+                    <div class="card shadow border-0">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0"><i class="fas fa-paper-plane"></i> Send us a Message</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" class="needs-validation" novalidate>
+                                {% csrf_token %}
+
+
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+                                    <div class="invalid-feedback">
+                                        Please provide your name.
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email.
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Message subject" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a subject.
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide a message.
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fas fa-send"></i> Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Contact Information -->
+                <div class="col-lg-6">
+                    <div class="card shadow border-0 h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="card-title mb-0"><i class="fas fa-info-circle"></i> Contact Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Address -->
+                            <div class="mb-4">
+                                <h6 class="mb-3"><i class="fas fa-map-marker-alt text-primary"></i> Address</h6>
+                                <p class="text-muted">
+                                    TravelMate Headquarters<br>
+                                    123 Travel Street<br>
+                                    New Delhi, Delhi 110001<br>
+                                    India
+                                </p>
+                            </div>
+
+
+                            <!-- Phone -->
+                            <div class="mb-4">
+                                <h6 class="mb-3"><i class="fas fa-phone text-success"></i> Phone</h6>
+                                <p class="text-muted">
+                                    <a href="tel:+911234567890" class="text-decoration-none">
+                                        +91 123-456-7890
+                                    </a><br>
+                                    <small>Monday - Friday, 9 AM - 6 PM IST</small>
+                                </p>
+                            </div>
+
+
+                            <!-- Email -->
+                            <div class="mb-4">
+                                <h6 class="mb-3"><i class="fas fa-envelope text-info"></i> Email</h6>
+                                <p class="text-muted">
+                                    <a href="mailto:info@travelmate.com" class="text-decoration-none">
+                                        info@travelmate.com
+                                    </a><br>
+                                    <a href="mailto:support@travelmate.com" class="text-decoration-none">
+                                        support@travelmate.com
+                                    </a>
+                                </p>
+                            </div>
+
+
+                            <!-- Hours -->
+                            <div class="mb-4">
+                                <h6 class="mb-3"><i class="fas fa-clock text-warning"></i> Business Hours</h6>
+                                <p class="text-muted">
+                                    Monday - Friday: 9:00 AM - 6:00 PM<br>
+                                    Saturday: 10:00 AM - 4:00 PM<br>
+                                    Sunday: Closed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- FAQ Section -->
+            <div class="mt-5">
+                <h3 class="mb-4 text-center">Frequently Asked Questions</h3>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                <i class="fas fa-question-circle me-2"></i> How do I book a tour?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Simply browse our destinations, select a package, and click "Book Now". You'll be guided through a simple booking process. Make sure you're logged in to complete the booking!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <i class="fas fa-question-circle me-2"></i> Can I modify my booking?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, you can modify your booking up to 7 days before the travel date. Please contact our support team for assistance.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                <i class="fas fa-question-circle me-2"></i> What payment methods do you accept?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We accept all major credit cards, debit cards, and online banking. Payment is processed securely through our payment gateway.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                <i class="fas fa-question-circle me-2"></i> What is your cancellation policy?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Free cancellation up to 7 days before. 50% refund within 7 days, no refund within 3 days of travel.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Bootstrap form validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container mt-5 mb-5">
+    <!-- Destination Details -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            {% if destination.image %}
+                <img src="{{ destination.image.url }}" class="img-fluid rounded shadow" alt="{{ destination.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded shadow" alt="No Image">
+            {% endif %}
+        </div>
+
+
+        <div class="col-md-6">
+            <h1 class="mb-3">{{ destination.name }}</h1>
+           
+            <div class="mb-3">
+                <span class="badge bg-primary me-2">
+                    <i class="fas fa-map-marker-alt"></i> {{ destination.country }}
+                </span>
+                <span class="badge bg-info">
+                    <i class="fas fa-calendar"></i> {{ destination.duration }}
+                </span>
+            </div>
+
+
+            <p class="lead text-muted mb-4">{{ destination.description }}</p>
+
+
+            <div class="card border-0 bg-light mb-4">
+                <div class="card-body">
+                    <h3 class="text-success mb-0">
+                        <i class="fas fa-rupee-sign"></i> {{ destination.price }}
+                        <small class="text-muted fs-6">per person</small>
+                    </h3>
+                </div>
+            </div>
+
+
+            <div class="mb-4">
+                <h5><i class="fas fa-check-circle text-success"></i> Highlights</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success me-2"></i>Professional Guided Tours</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Comfortable Accommodation</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Daily Meals Included</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Travel Insurance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+
+    <!-- Packages Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="mb-4">
+                <i class="fas fa-box"></i> Available Packages
+            </h2>
+
+
+            {% if packages %}
+                <div class="row">
+                    {% for package in packages %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card shadow-sm h-100 border-0">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="card-title mb-0">{{ package.title }}</h5>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <p class="mb-2">
+                                            <strong><i class="fas fa-hotel"></i> Hotel Type:</strong>
+                                        </p>
+                                        <p class="text-muted">{{ package.hotel_type }}</p>
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <p class="mb-2">
+                                            <strong><i class="fas fa-bus"></i> Transport:</strong>
+                                        </p>
+                                        <p class="text-muted">{{ package.transport }}</p>
+                                    </div>
+
+
+                                    {% if package.inclusions %}
+                                        <div class="mb-3">
+                                            <p class="mb-2">
+                                                <strong><i class="fas fa-list"></i> Inclusions:</strong>
+                                            </p>
+                                            <p class="text-muted small">{{ package.inclusions }}</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+
+                                <div class="card-footer bg-light border-0">
+                                    {% if user.is_authenticated %}
+                                        <a href="{% url 'tourism:book' package.id %}" class="btn btn-success w-100">
+                                            <i class="fas fa-check-circle"></i> Book Now
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'tourism:login' %}" class="btn btn-warning w-100">
+                                            <i class="fas fa-sign-in-alt"></i> Login to Book
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle"></i> No packages available for this destination.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

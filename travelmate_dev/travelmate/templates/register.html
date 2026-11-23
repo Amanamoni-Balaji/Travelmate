@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-user-plus"></i> Create Your Account
+                    </h3>
+                    <p class="text-light mt-2 mb-0">Join TravelMate Community</p>
+                </div>
+
+
+                <div class="card-body p-5">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong><i class="fas fa-exclamation-triangle"></i> Error:</strong>
+                            {% for error in form.non_field_errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endif %}
+
+
+                    <form method="POST" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+
+                        <!-- Username Field -->
+                        <div class="mb-4">
+                            <label for="id_username" class="form-label">
+                                <i class="fas fa-user"></i> Username <span class="text-danger">*</span>
+                            </label>
+                            {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.username.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <small class="text-muted d-block mt-2">
+                                Username should be unique and contain 3-20 characters
+                            </small>
+                        </div>
+
+
+                        <!-- Email Field -->
+                        <div class="mb-4">
+                            <label for="id_email" class="form-label">
+                                <i class="fas fa-envelope"></i> Email <span class="text-danger">*</span>
+                            </label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.email.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <small class="text-muted d-block mt-2">
+                                We'll use this to send you important updates
+                            </small>
+                        </div>
+
+
+                        <!-- Password Field -->
+                        <div class="mb-4">
+                            <label for="id_password" class="form-label">
+                                <i class="fas fa-lock"></i> Password <span class="text-danger">*</span>
+                            </label>
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.password.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <small class="text-muted d-block mt-2">
+                                <i class="fas fa-info-circle"></i> Use a strong password with mix of letters and numbers
+                            </small>
+                        </div>
+
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-user-check"></i> Create Account
+                            </button>
+                        </div>
+                    </form>
+
+
+                    <hr class="my-4">
+
+
+                    <div class="text-center">
+                        <p class="mb-0">
+                            Already have an account?
+                            <a href="{% url 'tourism:login' %}" class="fw-bold text-primary">
+                                Login here
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Features Section -->
+            <div class="mt-5">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="p-3">
+                            <i class="fas fa-rocket fa-2x text-primary mb-3"></i>
+                            <h6><strong>Quick Setup</strong></h6>
+                            <p class="small text-muted">Get started in seconds</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="p-3">
+                            <i class="fas fa-lock fa-2x text-primary mb-3"></i>
+                            <h6><strong>Secure</strong></h6>
+                            <p class="small text-muted">Your data is protected</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="p-3">
+                            <i class="fas fa-smile fa-2x text-primary mb-3"></i>
+                            <h6><strong>Easy to Use</strong></h6>
+                            <p class="small text-muted">Simple and intuitive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Bootstrap form validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+
+{% endblock %}
